@@ -6,6 +6,7 @@ on:
 
 jobs:
   versioning:
+      if: ${{ github.event.head_commit.message }} != 'Auto updating version'
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v1
@@ -20,18 +21,12 @@ jobs:
       - name: Update version
         run: python .github/workflows/update_version.py
       - name: switching from HTTPS to SSH
-        run: git remote set-url origin ${{ secrets.ssh }}
-      - name: check for changes
-        run: git status
-      - name: stage changed files
-        run: git add versioning.yml
-      - name: Add email and name
         run: |
+          git remote set-url origin ${{ secrets.ssh }}
+          git status
+          git add versioning.yml
           git config --global user.email "40605232+AttackingOrDefending@users.noreply.github.com"
           git config --global user.name "AttackingOrDefending"
-      - name: commit changed files
-        run: git commit -m "Auto updating version"
-      - name: fetch from master
-        run: git fetch origin main
-      - name: push code to master
-        run: git push origin HEAD:main
+          git commit -m "Auto updating version"
+          git fetch origin main
+          git push origin HEAD:main
