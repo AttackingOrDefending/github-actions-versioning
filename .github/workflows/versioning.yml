@@ -1,1 +1,22 @@
+name: Versioning
 
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  versioning:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Update version
+        run: python .github/workflows/update_version.py
+      - name: Push changes
+        run: |
+          git add -A
+          git commit -m "Update version"
+          git push
