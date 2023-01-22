@@ -20,4 +20,4 @@ jobs:
       - name: Update version
         run: python .github/workflows/update_version.py
       - name: Push changes
-        uses: pre-commit-ci/lite-action@v1.0.0
+        uses: pre-commit/action@v3.0.0
