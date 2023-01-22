@@ -21,7 +21,7 @@ jobs:
         run: python .github/workflows/update_version.py
       - name: Push changes
         run: |
-          git remote set-url origin ${{ secrets.ssh }}
+          git remote set-url origin https://${{ secrets.token }}@github.com/AttackingOrDefending/github-actions-versioning
           git add versioning.yml
           git commit -m "Update version"
           git fetch origin main
