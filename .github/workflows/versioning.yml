@@ -21,8 +21,8 @@ jobs:
         run: python .github/workflows/update_version.py
       - name: Push changes
         run: |
-          git config --global user.email "40605232+AttackingOrDefending@users.noreply.github.com"
-          git config --global user.name "AttackingOrDefending"
-          git add -A
+          git remote set-url origin ${{ secrets.ssh }}
+          git add versioning.yml
           git commit -m "Update version"
-          git push
+          git fetch origin main
+          git push origin HEAD:main
