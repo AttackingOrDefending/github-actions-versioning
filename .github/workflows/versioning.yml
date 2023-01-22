@@ -20,7 +20,7 @@ jobs:
           pip install PyYAML
       - name: Update version
         run: python .github/workflows/update_version.py
-      - name: switching from HTTPS to SSH
+      - name: Auto update version
         run: |
           git remote set-url origin ${{ secrets.ssh }}
           git status
