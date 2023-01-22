@@ -22,6 +22,8 @@ jobs:
       - name: Push changes
         run: |
           git remote set-url origin https://${{ secrets.token }}@github.com/AttackingOrDefending/github-actions-versioning
+          git config --global user.email "40605232+AttackingOrDefending@users.noreply.github.com"
+          git config --global user.name "AttackingOrDefending"
           git add versioning.yml
           git commit -m "Update version"
           git fetch origin main
