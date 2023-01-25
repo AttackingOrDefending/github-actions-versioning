@@ -21,10 +21,11 @@ jobs:
       - name: Update version
         run: python .github/workflows/update_version.py
       - name: Get version
-        uses: CumulusDS/get-yaml-paths-action@v1.0.1
+        id: yaml-data
+        uses: jbutcher5/read-yaml@main      # You may wish to replace main with a version tag such as '1.6' etc.
         with:
-          file: versioning.yml
-          version: lichess_bot_version
+          file: 'versioning.yml'          # File to read from
+          key-path: '["lichess_bot_version"]'
       - name: Auto update version
         run: |
           git config --global user.email "40605232+AttackingOrDefending@users.noreply.github.com"
@@ -32,6 +33,6 @@ jobs:
           git remote set-url origin ${{ secrets.ssh }}
           git status
           git add versioning.yml
-          git commit -m "Auto updating version to ${{ version }}"
+          git commit -m "Auto updating version to ${{ steps.yaml-data.outputs.data }}"
           git fetch origin main
           git push origin HEAD:main
