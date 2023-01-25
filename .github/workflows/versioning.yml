@@ -25,7 +25,7 @@ jobs:
           git config --global user.email "40605232+AttackingOrDefending@users.noreply.github.com"
           git config --global user.name "AttackingOrDefending"
           git config --global gpg.format ssh
-          git config --global user.signingkey ${{ secrets.ssh }}
+          git config --global user.signingkey ${{ secrets.token }}
           git remote set-url origin ${{ secrets.ssh }}
           git status
           git add versioning.yml
