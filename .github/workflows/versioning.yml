@@ -28,6 +28,6 @@ jobs:
           git remote set-url origin ${{ secrets.ssh }}
           git status
           git add versioning.yml
-          git commit -m "Auto updating version"
+          git commit -m -S "Auto updating version"
           git fetch origin main
           git push origin HEAD:main
