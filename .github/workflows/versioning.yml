@@ -20,6 +20,11 @@ jobs:
           pip install PyYAML
       - name: Update version
         run: python .github/workflows/update_version.py
+      - name: Get version
+        uses: CumulusDS/get-yaml-paths-action@v1.0.1
+        with:
+          file: versioning.yml
+          version: lichess_bot_version
       - name: Auto update version
         run: |
           git config --global user.email "40605232+AttackingOrDefending@users.noreply.github.com"
@@ -27,6 +32,6 @@ jobs:
           git remote set-url origin ${{ secrets.ssh }}
           git status
           git add versioning.yml
-          git commit -m "Auto updating version"
+          git commit -m "Auto updating version to ${{ version }}"
           git fetch origin main
           git push origin HEAD:main
