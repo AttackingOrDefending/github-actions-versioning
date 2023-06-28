@@ -30,8 +30,8 @@ jobs:
           key-path: '["lichess_bot_version"]'
       - name: Auto update version
         run: |
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git config --global user.name 'github-actions[bot]'
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           git add versioning.yml
           git commit -m "Auto update version to ${{ steps.yaml-data.outputs.data }}"
           git push origin HEAD:main
